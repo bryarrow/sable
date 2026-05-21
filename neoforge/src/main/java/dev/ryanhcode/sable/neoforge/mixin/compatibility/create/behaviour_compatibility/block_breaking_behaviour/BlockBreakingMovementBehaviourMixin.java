@@ -76,7 +76,8 @@ public abstract class BlockBreakingMovementBehaviourMixin implements MovementBeh
                     targetCenter = targetSubLevel.logicalPose().transformPosition(targetCenter);
                 }
 
-                if (sublevelLocalCenter.distanceToSqr(targetCenter) > 2 * 2) {
+                final double allowDistanceSqr = this.getActiveAreaOffset(context).lengthSqr() + 1;
+                if (sublevelLocalCenter.distanceToSqr(targetCenter) > allowDistanceSqr ) {
                     data.remove("Progress");
                     data.remove("TicksUntilNextProgress");
                     data.remove("BreakingPos");
